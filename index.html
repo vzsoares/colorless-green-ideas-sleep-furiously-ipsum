@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Colorless Green Ideas Ipsum Generator</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.0/cdn.min.js"
+            defer
+        ></script>
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@300;400;600&display=swap");
+
+            .pattern-bg {
+                background-color: #f8f9fa;
+                background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23bae6b5' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            }
+        </style>
+    </head>
+    <body class="pattern-bg min-h-screen">
+        <div
+            x-data="colorlessGenerator()"
+            class="container mx-auto px-4 py-8 max-w-4xl"
+        >
+            <!-- Header -->
+            <header class="text-center mb-12">
+                <h1 class="text-5xl font-bold font-serif text-gray-800 mb-3">
+                    Colorless Green Ideas
+                </h1>
+                <p class="text-2xl text-gray-600 italic font-serif">
+                    Ipsum Generator
+                </p>
+                <div class="w-24 h-1 bg-green-400 mx-auto mt-6"></div>
+            </header>
+
+            <!-- Controls -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <div class="flex flex-wrap -mx-3">
+                    <!-- Paragraphs Control -->
+                    <div class="w-full md:w-1/2 px-3 mb-6">
+                        <label
+                            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            for="paragraphs"
+                        >
+                            Paragraphs
+                        </label>
+                        <div class="flex items-center">
+                            <input
+                                type="range"
+                                id="paragraphs"
+                                x-model="paragraphCount"
+                                min="1"
+                                max="10"
+                                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                            />
+                            <span
+                                class="ml-3 w-10 text-center text-gray-700"
+                                x-text="paragraphCount"
+                            ></span>
+                        </div>
+                    </div>
+
+                    <!-- Sentences Control -->
+                    <div class="w-full md:w-1/2 px-3 mb-6">
+                        <label
+                            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            for="sentences"
+                        >
+                            Sentences Per Paragraph
+                        </label>
+                        <div class="flex items-center">
+                            <input
+                                type="range"
+                                id="sentences"
+                                x-model="sentencesPerParagraph"
+                                min="1"
+                                max="10"
+                                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                            />
+                            <span
+                                class="ml-3 w-10 text-center text-gray-700"
+                                x-text="sentencesPerParagraph"
+                            ></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <div class="text-center mt-4">
+                    <button
+                        @click="generateText()"
+                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105 focus:outline-none"
+                    >
+                        Generate Text
+                    </button>
+                </div>
+            </div>
+
+            <!-- Generated Text Display -->
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+                <div x-show="isLoading" class="flex justify-center my-10">
+                    <div
+                        class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-500"
+                    ></div>
+                </div>
+
+                <div
+                    x-show="!isLoading && generatedText"
+                    class="prose lg:prose-lg mx-auto font-serif text-gray-800"
+                >
+                    <template x-for="paragraph in generatedText.split('\n\n')">
+                        <p class="mb-6 leading-relaxed" x-text="paragraph"></p>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Copy Button -->
+            <div x-show="generatedText" class="text-center">
+                <button
+                    @click="copyToClipboard()"
+                    class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-6 rounded-full shadow-md focus:outline-none flex items-center mx-auto"
+                >
+                    <span x-text="copyButtonText"></span>
+                </button>
+            </div>
+
+            <!-- Footer -->
+            <footer class="mt-16 text-center text-gray-500 text-sm">
+                <p>
+                    Inspired by Noam Chomsky's famous sentence: "Colorless green
+                    ideas sleep furiously"
+                </p>
+            </footer>
+        </div>
+
+        <script>
+            function colorlessGenerator() {
+                return {
+                    paragraphCount: 3,
+                    sentencesPerParagraph: 4,
+                    generatedText: "",
+                    isLoading: false,
+                    copyButtonText: "Copy to Clipboard",
+
+                    // Implementation of the generator class
+                    generator: {
+                        adjectives: [
+                            "colorless",
+                            "green",
+                            "abstract",
+                            "theoretical",
+                            "invisible",
+                            "dormant",
+                            "ephemeral",
+                            "transparent",
+                            "conceptual",
+                            "metaphorical",
+                            "intangible",
+                            "paradoxical",
+                            "philosophical",
+                            "synthetic",
+                            "fragmented",
+                            "epistemological",
+                            "ontological",
+                            "phenomenological",
+                            "hermeneutic",
+                            "dialectical",
+                            "teleological",
+                            "metaphysical",
+                            "transcendental",
+                            "existential",
+                            "apophatic",
+                            "axiomatic",
+                            "liminal",
+                            "ineffable",
+                            "solipsistic",
+                            "quiescent",
+                            "noumenal",
+                            "categorical",
+                            "heuristic",
+                            "apodictic",
+                        ],
+                        nouns: [
+                            "ideas",
+                            "concepts",
+                            "notions",
+                            "theories",
+                            "thoughts",
+                            "abstractions",
+                            "hypotheses",
+                            "paradigms",
+                            "frameworks",
+                            "constructs",
+                            "principles",
+                            "postulates",
+                            "philosophies",
+                            "methodologies",
+                            "premises",
+                            "qualia",
+                            "phenomena",
+                            "antinomies",
+                            "dichotomies",
+                            "aporia",
+                            "axioms",
+                            "monads",
+                            "syllogisms",
+                            "heuristics",
+                            "noumena",
+                            "isomorphisms",
+                            "ontologies",
+                            "epistemologies",
+                            "teleologies",
+                            "dialectics",
+                            "hermeneutics",
+                            "propositions",
+                            "quiddities",
+                            "essences",
+                            "entelechy",
+                        ],
+                        adverbs: [
+                            "furiously",
+                            "silently",
+                            "vigorously",
+                            "peacefully",
+                            "quietly",
+                            "rapidly",
+                            "gradually",
+                            "theoretically",
+                            "metaphorically",
+                            "paradoxically",
+                            "abstractly",
+                            "potentially",
+                            "implicitly",
+                            "virtually",
+                            "conceptually",
+                            "ontologically",
+                            "dialectically",
+                            "teleologically",
+                            "axiomatically",
+                            "phenomenologically",
+                            "hermeneutically",
+                            "epistemologically",
+                            "apodictically",
+                            "heuristically",
+                            "categorically",
+                            "ineffably",
+                            "noumenally",
+                            "antinomically",
+                            "solipsistically",
+                            "quiescently",
+                        ],
+                        verbs: [
+                            "sleep",
+                            "dance",
+                            "contemplate",
+                            "resonate",
+                            "fluctuate",
+                            "dissolve",
+                            "evolve",
+                            "transcend",
+                            "illuminate",
+                            "obfuscate",
+                            "deconstruct",
+                            "materialize",
+                            "synthesize",
+                            "meditate",
+                            "proliferate",
+                            "sublimate",
+                            "reify",
+                            "dialectize",
+                            "instantiate",
+                            "substantiate",
+                            "subsume",
+                            "interpenetrate",
+                            "particularize",
+                            "universalize",
+                            "contextualize",
+                            "problematize",
+                            "delineate",
+                            "presuppose",
+                            "systematize",
+                            "essentialize",
+                            "deterritorialize",
+                            "actualize",
+                            "ontologize",
+                            "phenomenologize",
+                            "disembed",
+                        ],
+                        conjunctions: [
+                            "while",
+                            "although",
+                            "yet",
+                            "and",
+                            "but",
+                            "nevertheless",
+                            "however",
+                            "moreover",
+                            "furthermore",
+                            "meanwhile",
+                            "notwithstanding",
+                            "consequently",
+                            "conversely",
+                            "ergo",
+                            "henceforth",
+                            "wherefore",
+                            "qua",
+                            "insofar as",
+                            "thereafter",
+                            "vis-à-vis",
+                        ],
+
+                        getRandomElement(array) {
+                            return array[
+                                Math.floor(Math.random() * array.length)
+                            ];
+                        },
+
+                        capitalizeFirstLetter(str) {
+                            return str.charAt(0).toUpperCase() + str.slice(1);
+                        },
+
+                        generateSentence() {
+                            const patterns = [
+                                // Colorless green ideas sleep furiously pattern
+                                () => {
+                                    const adj1 = this.getRandomElement(
+                                        this.adjectives,
+                                    );
+                                    const adj2 = this.getRandomElement(
+                                        this.adjectives.filter(
+                                            (a) => a !== adj1,
+                                        ),
+                                    );
+                                    const noun = this.getRandomElement(
+                                        this.nouns,
+                                    );
+                                    const verb = this.getRandomElement(
+                                        this.verbs,
+                                    );
+                                    const adverb = this.getRandomElement(
+                                        this.adverbs,
+                                    );
+                                    return `${this.capitalizeFirstLetter(adj1)} ${adj2} ${noun} ${verb} ${adverb}.`;
+                                },
+
+                                // Alternative pattern with conjunction
+                                () => {
+                                    const adj1 = this.getRandomElement(
+                                        this.adjectives,
+                                    );
+                                    const noun1 = this.getRandomElement(
+                                        this.nouns,
+                                    );
+                                    const verb1 = this.getRandomElement(
+                                        this.verbs,
+                                    );
+                                    const conjunction = this.getRandomElement(
+                                        this.conjunctions,
+                                    );
+                                    const adj2 = this.getRandomElement(
+                                        this.adjectives,
+                                    );
+                                    const noun2 = this.getRandomElement(
+                                        this.nouns,
+                                    );
+                                    const verb2 = this.getRandomElement(
+                                        this.verbs,
+                                    );
+                                    const adverb = this.getRandomElement(
+                                        this.adverbs,
+                                    );
+                                    return `${this.capitalizeFirstLetter(adj1)} ${noun1} ${verb1}, ${conjunction} ${adj2} ${noun2} ${verb2} ${adverb}.`;
+                                },
+
+                                // Inverted adverb pattern
+                                () => {
+                                    const adverb = this.getRandomElement(
+                                        this.adverbs,
+                                    );
+                                    const adj = this.getRandomElement(
+                                        this.adjectives,
+                                    );
+                                    const noun = this.getRandomElement(
+                                        this.nouns,
+                                    );
+                                    const verb = this.getRandomElement(
+                                        this.verbs,
+                                    );
+                                    return `${this.capitalizeFirstLetter(adverb)}, ${adj} ${noun} ${verb}.`;
+                                },
+
+                                // Philosophical predication pattern
+                                () => {
+                                    const adj = this.getRandomElement(
+                                        this.adjectives,
+                                    );
+                                    const noun1 = this.getRandomElement(
+                                        this.nouns,
+                                    );
+                                    const verb = this.getRandomElement(
+                                        this.verbs,
+                                    );
+                                    const noun2 = this.getRandomElement(
+                                        this.nouns.filter((n) => n !== noun1),
+                                    );
+                                    return `${this.capitalizeFirstLetter(adj)} ${noun1} ${verb} the ${noun2} of being.`;
+                                },
+
+                                // Nested abstractions pattern
+                                () => {
+                                    const adj1 = this.getRandomElement(
+                                        this.adjectives,
+                                    );
+                                    const adj2 = this.getRandomElement(
+                                        this.adjectives.filter(
+                                            (a) => a !== adj1,
+                                        ),
+                                    );
+                                    const noun1 = this.getRandomElement(
+                                        this.nouns,
+                                    );
+                                    const noun2 = this.getRandomElement(
+                                        this.nouns.filter((n) => n !== noun1),
+                                    );
+                                    const verb = this.getRandomElement(
+                                        this.verbs,
+                                    );
+                                    return `${this.capitalizeFirstLetter(adj1)} ${noun1} of ${adj2} ${noun2} ${verb} intrinsically.`;
+                                },
+                            ];
+
+                            return this.getRandomElement(patterns)();
+                        },
+
+                        generateParagraph(sentenceCount) {
+                            const sentences = [];
+                            for (let i = 0; i < sentenceCount; i++) {
+                                sentences.push(this.generateSentence());
+                            }
+                            return sentences.join(" ");
+                        },
+
+                        generateIpsum(paragraphCount, sentencesPerParagraph) {
+                            const paragraphs = [];
+                            for (let i = 0; i < paragraphCount; i++) {
+                                paragraphs.push(
+                                    this.generateParagraph(
+                                        sentencesPerParagraph,
+                                    ),
+                                );
+                            }
+                            return paragraphs.join("\n\n");
+                        },
+                    },
+
+                    // Generate text with simulated loading for better UX
+                    generateText() {
+                        this.isLoading = true;
+                        setTimeout(() => {
+                            this.generatedText = this.generator.generateIpsum(
+                                this.paragraphCount,
+                                this.sentencesPerParagraph,
+                            );
+                            this.isLoading = false;
+                            this.copyButtonText = "Copy to Clipboard";
+                        }, 600); // Short delay for loading animation
+                    },
+
+                    // Copy the generated text to clipboard
+                    copyToClipboard() {
+                        navigator.clipboard
+                            .writeText(this.generatedText)
+                            .then(() => {
+                                this.copyButtonText = "Copied!";
+                                setTimeout(() => {
+                                    this.copyButtonText = "Copy to Clipboard";
+                                }, 2000);
+                            });
+                    },
+
+                    // Initialize with some example text
+                    init() {
+                        this.generateText();
+                    },
+                };
+            }
+        </script>
+    </body>
+</html>
