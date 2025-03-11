@@ -11,6 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
             sentencesPerParagraph: 4,
             generatedText: "",
             isLoading: false,
+            style: "erudite", // Default style
+
+            setStyle(newStyle) {
+                this.style = newStyle;
+            },
             copyButtonText: "Copy to Clipboard",
 
             // Use the npm package instead of local implementation
