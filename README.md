@@ -16,37 +16,12 @@ A sophisticated nonsensical text generator inspired by Chomsky's famous example 
 - **Philosophically Rich**: Employs vocabulary from epistemology, ontology, phenomenology & more
 - **Customizable Output**: Control paragraph count and sentence density
 - **Multiple Sentence Patterns**: Creates varied text structures following linguistic rules
-- **Beautiful Interface**: Clean, responsive design with an elegant user experience
-- **One-Click Copying**: Easily copy generated text to clipboard
+- **Available as NPM package**: Easy integration into any JavaScript project
+- **Web Interface**: Simple UI for generating text directly in the browser
 
 ## 🚀 Live Demo
 
 Try it now: [Colorless Green Ideas Ipsum Generator](https://example.com/colorless-green-ipsum)
-
-## 🧠 The Philosophy Behind It
-
-While traditional Lorem Ipsum text serves as neutral filler, Colorless Green Ideas Ipsum challenges the very notion of meaning. By combining intellectually stimulating philosophical terms in grammatically correct but semantically vacant constructions, it creates text that simultaneously feels profound and meaningless—perfect for projects seeking a more intellectually engaging alternative to standard placeholder text.
-
-## 📋 Usage Examples
-
-### Web Interface
-
-Simply:
-
-1. Adjust the sliders for paragraph count and sentences per paragraph
-2. Click "Generate Text"
-3. Copy the results with one click
-
-### TypeScript Class
-
-```typescript
-// Create a new generator instance
-const generator = new ColorlessGreenIpsumGenerator();
-
-// Generate 3 paragraphs with 4 sentences each
-const philosophicalNonsense = generator.generateIpsum(3, 4);
-console.log(philosophicalNonsense);
-```
 
 ### Sample Output
 
@@ -54,22 +29,36 @@ console.log(philosophicalNonsense);
 >
 > Apophatic frameworks deterritorialize categorically. Transcendental noumena of hermeneutic quiddities presuppose intrinsically. Metaphysical abstractions ontologize, ergo solipsistic essences sublimate apodictically. Phenomenologically, noumenal aporia delineate.
 
-## 🛠️ Technical Implementation
+## 📋 Usage Examples
 
-The project consists of three main components:
+### NPM Package
 
-1. **TypeScript Generator Class**: The core engine that produces the philosophical nonsense
-2. **Alpine.js Interface**: Provides reactive UI components and state management
-3. **Tailwind CSS Styling**: Delivers an elegant, responsive design system
+Install the package:
 
-### Technology Stack
+```bash
+npm install colorless-green-ipsum
+# or
+yarn add colorless-green-ipsum
+```
 
-- TypeScript/JavaScript
-- Alpine.js
-- Tailwind CSS
-- HTML5
+Use in your project:
 
-## 🔧 Installation
+```typescript
+// ESM
+import { ColorlessGreenIpsum } from "colorless-green-ipsum";
+
+// CommonJS
+const { ColorlessGreenIpsum } = require("colorless-green-ipsum");
+
+// Create a new generator instance
+const generator = new ColorlessGreenIpsum();
+
+// Generate 3 paragraphs with 4 sentences each
+const philosophicalNonsense = generator.generate(3, 4);
+console.log(philosophicalNonsense);
+```
+
+## 🔧 Dev
 
 1. Clone the repository:
 
@@ -80,7 +69,7 @@ git clone https://github.com/yourusername/colorless-green-ipsum.git
 2. Open `index.html` in your browser, or serve it with a static file server:
 
 ```bash
-npx serve
+yarn dev:www
 ```
 
 ## 🤝 Contributing
