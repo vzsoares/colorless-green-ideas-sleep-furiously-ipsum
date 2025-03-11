@@ -11,8 +11,8 @@
     ],
     "scripts": {
         "build:pkg:ts": "tsc -b --declaration --emitDeclarationOnly",
-        "build:pkg:cjs": "esbuild ./src/index.ts --bundle --outfile=dist/pkg/index.js --packages=external --format=cjs",
-        "build:pkg:esm": "esbuild ./src/index.ts --bundle --outfile=dist/pkg/index.esm.js --packages=external --format=esm",
+        "build:pkg:cjs": "esbuild ./pkg/index.ts --bundle --outfile=dist/pkg/index.js --packages=external --format=cjs",
+        "build:pkg:esm": "esbuild ./pkg/index.ts --bundle --outfile=dist/pkg/index.esm.js --packages=external --format=esm",
         "build:pkg": "npm run build:pkg:ts && npm run build:pkg:cjs && npm run build:pkg:esm",
         "dev:www": "cd www && vite",
         "build:www": "cd www && vite build --outDir ../dist/www",

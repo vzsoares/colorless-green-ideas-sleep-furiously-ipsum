@@ -3,12 +3,12 @@
         "target": "es2015",
         "module": "commonjs",
         "declaration": true,
-        "outDir": "./dist/module",
+        "outDir": "./dist/pkg",
         "strict": true,
         "esModuleInterop": true
     },
     "include": [
-        "src"
+        "pkg"
     ],
     "exclude": [
         "node_modules",
