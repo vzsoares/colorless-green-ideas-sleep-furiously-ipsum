@@ -15,7 +15,7 @@
         "build:pkg:esm": "esbuild ./pkg/index.ts --bundle --outfile=dist/pkg/index.esm.js --packages=external --format=esm",
         "build:pkg": "npm run build:pkg:ts && npm run build:pkg:cjs && npm run build:pkg:esm",
         "dev:www": "cd www && vite",
-        "build:www": "cd www && vite build --outDir ../dist/www",
+        "build:www": "cd www && vite build --base='/colorless-green-ideas-sleep-furiously-ipsum' --outDir ../dist/www",
         "preview:www": "cd www && vite preview --outDir ../dist/www",
         "test": "jest"
     },
