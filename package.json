@@ -1,6 +1,6 @@
 {
     "name": "colorless-green-ipsum",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "A philosophical nonsense text generator inspired by Chomsky's famous sentence",
     "main": "dist/pkg/index.js",
     "types": "dist/pkg/index.d.ts",
