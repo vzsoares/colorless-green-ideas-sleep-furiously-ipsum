@@ -1,6 +1,5 @@
 import Alpine from "alpinejs";
 import colorlessGreenIpsum from "colorless-green-ipsum";
-import "./styles.css";
 
 window.Alpine = Alpine;
 

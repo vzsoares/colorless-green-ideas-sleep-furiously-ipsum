@@ -1,6 +1,7 @@
 export default {
     plugins: {
-        tailwindcss: {},
+        /** @type {import('tailwindcss').Config} */
+        tailwindcss: { content: ["./*.html", "./*.js"] },
         autoprefixer: {},
     },
 };
