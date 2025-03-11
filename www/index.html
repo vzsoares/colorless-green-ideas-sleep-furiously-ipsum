@@ -33,9 +33,41 @@
 
             <!-- Controls -->
             <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <!-- Style Selection -->
+                <div class="w-full mb-6">
+                    <label
+                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    >
+                        Style
+                    </label>
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        <button
+                            @click="setStyle('common')"
+                            class="px-4 py-2 rounded-md transition-all"
+                            :class="style === 'common' ? 'bg-green-500 text-white' : 'bg-gray-200 hover:bg-gray-300'"
+                        >
+                            Common
+                        </button>
+                        <button
+                            @click="setStyle('erudite')"
+                            class="px-4 py-2 rounded-md transition-all"
+                            :class="style === 'erudite' ? 'bg-green-500 text-white' : 'bg-gray-200 hover:bg-gray-300'"
+                        >
+                            Erudite
+                        </button>
+                        <button
+                            @click="setStyle('whimsical')"
+                            class="px-4 py-2 rounded-md transition-all"
+                            :class="style === 'whimsical' ? 'bg-green-500 text-white' : 'bg-gray-200 hover:bg-gray-300'"
+                        >
+                            Whimsical
+                        </button>
+                    </div>
+                </div>
+
                 <div class="flex flex-wrap -mx-3">
                     <!-- Paragraphs Control -->
-                    <div class="w-full md:w-1/3 px-3 mb-6">
+                    <div class="w-full md:w-1/2 px-3 mb-6">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="paragraphs"
@@ -59,7 +91,7 @@
                     </div>
 
                     <!-- Sentences Control -->
-                    <div class="w-full md:w-1/3 px-3 mb-6">
+                    <div class="w-full md:w-1/2 px-3 mb-6">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="sentences"
@@ -79,42 +111,6 @@
                                 class="ml-3 w-10 text-center text-gray-700"
                                 x-text="sentencesPerParagraph"
                             ></span>
-                        </div>
-                    </div>
-
-                    <!-- Style Selector -->
-                    <div class="w-full md:w-1/3 px-3 mb-6">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            for="style"
-                        >
-                            Text Style
-                        </label>
-                        <div class="relative">
-                            <select
-                                id="style"
-                                x-model="style"
-                                @change="setStyle(style)"
-                                class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            >
-                                <option value="erudite">Erudite</option>
-                                <option value="poetic">Poetic</option>
-                                <option value="academic">Academic</option>
-                                <option value="whimsical">Whimsical</option>
-                            </select>
-                            <div
-                                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-                            >
-                                <svg
-                                    class="fill-current h-4 w-4"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                >
-                                    <path
-                                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                                    />
-                                </svg>
-                            </div>
                         </div>
                     </div>
                 </div>
