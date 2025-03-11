@@ -8,7 +8,13 @@
 
 A sophisticated nonsensical text generator inspired by Chomsky's famous example of a grammatically correct but semantically meaningless sentence. When you need placeholder text that challenges perception and ignites intellectual curiosity, reach for this instead of Lorem Ipsum.
 
-![Colorless Green Ideas Ipsum Generator Preview](/api/placeholder/800/400)
+![Colorless Green Ideas Ipsum Generator Preview](/static/preview.png)
+
+### Sample Output
+
+> Teleological phenomena of metaphysical dialectics systematize intrinsically. Epistemologically, transparent axioms meditate. Dialectical epistemologies reify the qualia of being. Ontological monads subsume, notwithstanding phenomenological axioms particularize heuristically.
+>
+> Apophatic frameworks deterritorialize categorically. Transcendental noumena of hermeneutic quiddities presuppose intrinsically. Metaphysical abstractions ontologize, ergo solipsistic essences sublimate apodictically. Phenomenologically, noumenal aporia delineate.
 
 ## ✨ Features
 
@@ -21,13 +27,7 @@ A sophisticated nonsensical text generator inspired by Chomsky's famous example 
 
 ## 🚀 Live Demo
 
-Try it now: [Colorless Green Ideas Ipsum Generator](https://example.com/colorless-green-ipsum)
-
-### Sample Output
-
-> Teleological phenomena of metaphysical dialectics systematize intrinsically. Epistemologically, transparent axioms meditate. Dialectical epistemologies reify the qualia of being. Ontological monads subsume, notwithstanding phenomenological axioms particularize heuristically.
->
-> Apophatic frameworks deterritorialize categorically. Transcendental noumena of hermeneutic quiddities presuppose intrinsically. Metaphysical abstractions ontologize, ergo solipsistic essences sublimate apodictically. Phenomenologically, noumenal aporia delineate.
+Try it now: [Colorless Green Ideas Ipsum Generator](https://vzsoares.github.io/colorless-green-ideas-sleep-furiously-ipsum/)
 
 ## 📋 Usage Examples
 
@@ -66,7 +66,7 @@ console.log(philosophicalNonsense);
 git clone https://github.com/yourusername/colorless-green-ipsum.git
 ```
 
-2. Open `index.html` in your browser, or serve it with a static file server:
+2. Run dev script:
 
 ```bash
 yarn dev:www
