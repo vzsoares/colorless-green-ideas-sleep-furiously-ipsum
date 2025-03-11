@@ -33,7 +33,7 @@ Try it now: [Colorless Green Ideas Ipsum Generator](https://vzsoares.github.io/c
 
 ### NPM Package
 
-Install the package:
+Install the [package](https://www.npmjs.com/package/colorless-green-ipsum):
 
 ```bash
 npm install colorless-green-ipsum
