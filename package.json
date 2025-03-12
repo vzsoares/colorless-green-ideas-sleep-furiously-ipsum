@@ -1,6 +1,6 @@
 {
     "name": "colorless-green-ipsum",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "A philosophical nonsense text generator inspired by Chomsky's famous sentence",
     "main": "dist/pkg/index.js",
     "types": "dist/pkg/index.d.ts",
@@ -32,15 +32,15 @@
         "url": "https://github.com/vzsoares/colorless-green-ideas-sleep-furiously-ipsum.git"
     },
     "devDependencies": {
-        "esbuild": "^0.25.1",
-        "tsc": "^2.0.4",
-        "typescript": "^5.8.2",
-        "alpinejs": "^3.13.0",
-        "colorless-green-ipsum": "^1.1.0",
         "@tailwindcss/postcss": "^4.0.13",
+        "alpinejs": "^3.13.0",
         "autoprefixer": "^10.4.14",
+        "colorless-green-ipsum": "^1.2.0",
+        "esbuild": "^0.25.1",
         "postcss": "^8.4.24",
         "tailwindcss": "^3.3.2",
+        "tsc": "^2.0.4",
+        "typescript": "^5.8.2",
         "vite": "^4.3.9"
     }
 }
