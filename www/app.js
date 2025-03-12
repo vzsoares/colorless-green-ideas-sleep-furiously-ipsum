@@ -1,10 +1,11 @@
 import Alpine from "alpinejs";
-import colorlessGreenIpsum from "colorless-green-ipsum";
+import { ColorlessGreenIpsumGenerator } from "colorless-green-ipsum";
 
 window.Alpine = Alpine;
 
 document.addEventListener("DOMContentLoaded", () => {
     // Add your Alpine data function to window
+    const colorlessGreenIpsum = new ColorlessGreenIpsumGenerator();
     window.colorlessGenerator = function () {
         return {
             paragraphCount: 3,
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             setStyle(newStyle) {
                 this.style = newStyle;
+                colorlessGreenIpsum.setStyle(newStyle);
             },
             copyButtonText: "Copy to Clipboard",
 
@@ -28,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
                     this.isLoading = false;
                     this.copyButtonText = "Copy to Clipboard";
-                }, 600);
+                }, 300);
             },
 
             copyToClipboard() {
