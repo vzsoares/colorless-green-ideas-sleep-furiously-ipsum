@@ -58,6 +58,34 @@ const philosophicalNonsense = generator.generate(3, 4);
 console.log(philosophicalNonsense);
 ```
 
+Custom styles usage: 
+
+```typescript
+// Create a generator
+const generator = new ColorlessGreenIpsumGenerator();
+
+// Add a custom "technical" style
+generator.addCustomStyle("technical", {
+  adjectives: ["digital", "algorithmic", "computational", "binary", "encrypted", "quantum", "neural"],
+  nouns: ["networks", "protocols", "algorithms", "processors", "databases", "architectures", "interfaces"],
+  verbs: ["compute", "process", "optimize", "integrate", "compile", "debug", "implement"]
+  // Note: adverbs and conjunctions will use erudite defaults
+});
+
+// Set to the new style
+generator.setStyle("technical");
+
+// Generate text using the technical style
+const technicalText = generator.generate(2, 3);
+
+// List all available styles (including custom ones)
+const styles = generator.getAvailableStyles(); 
+// ['common', 'erudite', 'whimsical', 'technical']
+
+// Remove the custom style when no longer needed
+generator.removeCustomStyle("technical");
+```
+
 ## 🔧 Dev
 
 1. Clone the repository:
